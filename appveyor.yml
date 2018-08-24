@@ -35,7 +35,3 @@ build_script:
 
 test_script:
   - C:\projects\julia\bin\julia --check-bounds=yes -e "using Pkg; Pkg.test(\"AllanDeviations\", coverage=true)"
-
-after_test:
-  - C:\projects\julia\bin\julia -e "cd(Pkg.dir(\"AllanDeviations\")); Pkg.add(\"Coverage\"); using Coverage; Codecov.submit(process_folder())"
-  
