@@ -62,24 +62,31 @@ res64r = allandev(arr64, 0.5)
 
 
 
+#tau errors
+@test_throws ErrorException allandev([1.0], 1.0, taus = 1.0)
+@test_throws ErrorException allandev([1.0], 1.0, taus = 0.5)
+@test_throws ErrorException allandev([1.0], 1.0, taus = -2.0)
+
+
+
 #result and comparison tests
 resallan = allandev(arr64, 1.0, taus = AllTaus)
 resmallan = mallandev(arr64, 1.0, taus = AllTaus)
 reshadamard = hadamarddev(arr64, 1.0, taus = AllTaus)
 restime = timedev(arr64, 1.0, taus = AllTaus)
 
-@test (resallan.deviation[1] - 0.97093168314425360) < 2e-16
-@test (resallan.deviation[2] - 0.18221724671391565) < 2e-16
-@test (resallan.deviation[3] - 0.20833333333333334) < 2e-16
+@test abs(resallan.deviation[1] - 0.97093168314425360) < 2e-16
+@test abs(resallan.deviation[2] - 0.18221724671391565) < 2e-16
+@test abs(resallan.deviation[3] - 0.20833333333333334) < 2e-16
 
-@test (resmallan.deviation[1] - 0.9709316831442536) < 2e-16
-@test (resmallan.deviation[2] - 0.0919975090242484) < 2e-16
+@test abs(resmallan.deviation[1] - 0.9709316831442536) < 2e-16
+@test abs(resmallan.deviation[2] - 0.0919975090242484) < 2e-16
 
-@test (reshadamard.deviation[1] - 1.0616418102794056) < 2e-16
-@test (reshadamard.deviation[2] - 0.1943203969393503) < 2e-16
+@test abs(reshadamard.deviation[1] - 1.0616418102794056) < 2e-16
+@test abs(reshadamard.deviation[2] - 0.1943203969393503) < 2e-16
 
-@test (restime.deviation[1] - 0.56056766862807130) < 2e-16
-@test (restime.deviation[2] - 0.10622957319984969) < 2e-16
+@test abs(restime.deviation[1] - 0.56056766862807130) < 2e-16
+@test abs(restime.deviation[2] - 0.10622957319984969) < 2e-16
 
 @test resallan.deviation[1] == resmallan.deviation[1] #first element of allan deviation and modified allan deviation is the same
 @test abs(resallan.deviation[1] / sqrt(3) - restime.deviation[1]) < 2e-16 #first element of allan deviation and modified allan deviation is the same
@@ -130,10 +137,18 @@ arr64_f_r[2:length(arr64_f)] = cumsum(arr64 * 2.0)
 resallan_f_a = allandev(arr64_f, 1.0, frequency = false, taus = AllTaus)
 resallan_f_a_r = allandev(arr64_f_r, 1.0, frequency = false, taus = AllTaus)
 
+resmallan = mallandev(arr64, 1.0, frequency = true, taus = AllTaus)
+reshadamard = hadamarddev(arr64, 1.0, frequency = true, taus = AllTaus)
+restime = timedev(arr64, 1.0, frequency = true, taus = AllTaus)
+
 @test sum(abs.(resallan.deviation .- resallan_p.deviation)) < 2e-16 #phase is standard
 @test sum(abs.(resallan_p.deviation .- resallan_f.deviation)) > 2e-16 #frequency is not the same
 @test sum(abs.(resallan_f.deviation .- resallan_f_a.deviation)) < 2e-13 #frequency conversion
 @test sum(abs.(resallan_f_r.deviation .- (resallan_f_a_r.deviation .* 0.5))) < 2e-13 #frequency conversion with different rate
+
+@test sum(abs(resallan_f.deviation[1] - resmallan.deviation[1])) < 2e-15 #also test for mallandev
+@test abs(reshadamard.deviation[1] - 0.29893879132526296) < 2e-16 #hadamarddev
+@test abs(restime.deviation[1] - 0.17291213240777910) < 2e-16 #timedev
 
 
 
@@ -144,6 +159,20 @@ resallan_ho = allandev(arr64, 1.0, taus = HalfOctave).count
 resallan_o = allandev(arr64, 1.0, taus = Octave).count
 resallan_hd = allandev(arr64, 1.0, taus = HalfDecade).count
 resallan_d = allandev(arr64, 1.0, taus = Decade).count
+
+#all tau arguments
+taus_o_a = 2.0 .^(0:floor(log2(length(arr64))))
+resallan_o_c = allandev(arr64, 1.0, taus = 2.0).count
+resallan_o_a = allandev(arr64, 1.0, taus = taus_o_a).count
+#all tau arguments mallandev
+resmallan = mallandev(arr64, 1.0, taus = Octave).count
+resmallan_o_c = mallandev(arr64, 1.0, taus = 2.0).count
+resmallan_o_a = mallandev(arr64, 1.0, taus = taus_o_a).count
+#all tau arguments hadamarddev
+reshadamard = hadamarddev(arr64, 1.0, taus = Octave).count
+reshadamard_o_c = hadamarddev(arr64, 1.0, taus = 2.0).count
+reshadamard_o_a = hadamarddev(arr64, 1.0, taus = taus_o_a).count
+
 
 @test length(resallan_a) == 255
 @test sum(resallan_a) == 65280
@@ -156,9 +185,25 @@ resallan_d = allandev(arr64, 1.0, taus = Decade).count
 
 @test length(resallan_o) == 8
 @test sum(resallan_o) == 3586
+@test length(resallan_o_c) == 8 #float tau argument
+@test sum(resallan_o_c) == 3586 #float tau argument
+@test length(resallan_o_a) == 8 #array tau argument
+@test sum(resallan_o_a) == 3586 #array tau argument
 
 @test length(resallan_hd) == 4
 @test sum(resallan_hd) == 1736
 
 @test length(resallan_d) == 3
 @test sum(resallan_d) == 1314
+
+#mallandev tau tests
+@test length(resmallan) == length(resmallan_o_c)
+@test length(resmallan_o_a) == length(resmallan_o_c)
+@test sum(resmallan) == sum(resmallan_o_c)
+@test sum(resmallan_o_a) == sum(resmallan_o_c)
+
+#hadamarddev tau tests
+@test length(reshadamard) == length(reshadamard_o_c)
+@test length(reshadamard_o_a) == length(reshadamard_o_c)
+@test sum(reshadamard) == sum(reshadamard_o_c)
+@test sum(reshadamard_o_a) == sum(reshadamard_o_c)
