@@ -95,24 +95,25 @@ end
 
 
 
-#
-# allandev - calculates the normal or overlapping allan deviation
-#
-# parameters:
-# <data>:		the data array to calculate the deviation from either as as phases or frequencies
-# <rate>:		the rate of the data given
-# [datatype]:	the type of data as either `phase` (default) or `frequency`
-# [stride]:		the stride to calculate with as either `overlapping` (default) or `consecutive`
-# [taus]:		the taus to calculate at as either a descriptor with `all`,
-#				`octave` (default) for log2 spacing, `decade` for log10 spacing, a float array with given taus
-#				or a single float as a custom log scale greater 1.0
-#
-# returns: named tupple (taus, deviation, error, count)
-# `taus`:		the taus which where calculated
-# `deviation`:	the allan deviations
-# `error`:		the error of the deviations
-# `count`:		number of contributing terms for the deviations
-#
+"""
+allandev(data, rate; [frequency=false], [overlapping=true], [taus=Octave])
+Calculates the allan deviation
+
+#parameters:
+* <data>:			The data array to calculate the deviation from either as as phases or frequencies.
+* <rate>:			The rate of the data given.
+* [frequency]:		True if `data` contains frequency data otherwise (default) phase data is assumed.
+* [overlapping]:	True (default) to calculate overlapping deviation, false otherwise.
+* [taus]:			Taus to calculate the deviation at. This can either be an AllanTauDescriptor type
+					(AllTaus, Decadade, HalfDecade, Octave (default), HalfOctave, QuarterOctave), an array
+					of taus to calculate at or a number to build a custom log-scale on.
+
+#returns: named tupple (taus, deviation, error, count)
+* `taus`:		Taus which where used.
+* `deviation`:	Deviations calculated.
+* `error`:		Respective errors.
+* `count`:		Number of contributing terms for each deviation.
+"""
 function allandev(
 		data::Array{T, 1},
 		rate::AbstractFloat;
@@ -170,24 +171,25 @@ end
 
 
 
-#
-# mdallandev - calculates the normal or overlapping modified allan deviation
-#
-# parameters:
-# <data>:		the data array to calculate the deviation from either as as phases or frequencies
-# <rate>:		the rate of the data given
-# [datatype]:	the type of data as either `phase` (default) or `frequency`
-# [stride]:		the stride to calculate with as either `overlapping` (default) or `consecutive`
-# [taus]:		the taus to calculate at as either a descriptor with `all`,
-#				`octave` (default) for log2 spacing, `decade` for log10 spacing, a float array with given taus
-#				or a single float as a custom log scale greater 1.0
-#
-# returns: named tupple (taus, deviation, error, count)
-# `taus`:		the taus which where calculated
-# `deviation`:	the modified allan deviations
-# `error`:		the error of the deviations
-# `count`:		number of contributing terms for the deviations
-#
+"""
+mallandev(data, rate; [frequency=false], [overlapping=true], [taus=Octave])
+Calculates the modified allan deviation
+
+#parameters:
+* <data>:			The data array to calculate the deviation from either as as phases or frequencies.
+* <rate>:			The rate of the data given.
+* [frequency]:		True if `data` contains frequency data otherwise (default) phase data is assumed.
+* [overlapping]:	True (default) to calculate overlapping deviation, false otherwise.
+* [taus]:			Taus to calculate the deviation at. This can either be an AllanTauDescriptor type
+					(AllTaus, Decadade, HalfDecade, Octave (default), HalfOctave, QuarterOctave), an array
+					of taus to calculate at or a number to build a custom log-scale on.
+
+#returns: named tupple (taus, deviation, error, count)
+* `taus`:		Taus which where used.
+* `deviation`:	Deviations calculated.
+* `error`:		Respective errors.
+* `count`:		Number of contributing terms for each deviation.
+"""
 function mallandev(
 		data::Array{T, 1},
 		rate::AbstractFloat;
@@ -253,24 +255,25 @@ end
 
 
 
-#
-# hadamarddev - calculates the normal or overlapping hadamard deviation
-#
-# parameters:
-# <data>:		the data array to calculate the deviation from either as as phases or frequencies
-# <rate>:		the rate of the data given
-# [datatype]:	the type of data as either `phase` (default) or `frequency`
-# [stride]:		the stride to calculate with as either `overlapping` (default) or `consecutive`
-# [taus]:		the taus to calculate at as either a descriptor with `all`,
-#				`octave` (default) for log2 spacing, `decade` for log10 spacing, a float array with given taus
-#				or a single float as a custom log scale greater 1.0
-#
-# returns: named tupple (taus, deviation, error, count)
-# `taus`:		the taus which where calculated
-# `deviation`:	the hadamard deviations
-# `error`:		the error of the deviations
-# `count`:		number of contributing terms for the deviations
-#
+"""
+hadamarddev(data, rate; [frequency=false], [overlapping=true], [taus=Octave])
+Calculates the hadamard deviation
+
+#parameters:
+* <data>:			The data array to calculate the deviation from either as as phases or frequencies.
+* <rate>:			The rate of the data given.
+* [frequency]:		True if `data` contains frequency data otherwise (default) phase data is assumed.
+* [overlapping]:	True (default) to calculate overlapping deviation, false otherwise.
+* [taus]:			Taus to calculate the deviation at. This can either be an AllanTauDescriptor type
+					(AllTaus, Decadade, HalfDecade, Octave (default), HalfOctave, QuarterOctave), an array
+					of taus to calculate at or a number to build a custom log-scale on.
+
+#returns: named tupple (taus, deviation, error, count)
+* `taus`:		Taus which where used.
+* `deviation`:	Deviations calculated.
+* `error`:		Respective errors.
+* `count`:		Number of contributing terms for each deviation.
+"""
 function hadamarddev(
 		data::Array{T, 1},
 		rate::AbstractFloat;
@@ -328,24 +331,25 @@ end
 
 
 
-#
-# timedev - calculates the normal or overlapping time deviation
-#
-# parameters:
-# <data>:		the data array to calculate the deviation from either as as phases or frequencies
-# <rate>:		the rate of the data given
-# [datatype]:	the type of data as either `phase` (default) or `frequency`
-# [stride]:		the stride to calculate with as either `overlapping` (default) or `consecutive`
-# [taus]:		the taus to calculate at as either a descriptor with `all`,
-#				`octave` (default) for log2 spacing, `decade` for log10 spacing, a float array with given taus
-#				or a single float as a custom log scale greater 1.0
-#
-# returns: named tupple (taus, deviation, error, count)
-# `taus`:		the taus which where calculated
-# `deviation`:	the time deviations
-# `error`:		the error of the deviations
-# `count`:		number of contributing terms for the deviations
-#
+"""
+timedev(data, rate; [frequency=false], [overlapping=true], [taus=Octave])
+Calculates the time deviation
+
+#parameters:
+* <data>:			The data array to calculate the deviation from either as as phases or frequencies.
+* <rate>:			The rate of the data given.
+* [frequency]:		True if `data` contains frequency data otherwise (default) phase data is assumed.
+* [overlapping]:	True (default) to calculate overlapping deviation, false otherwise.
+* [taus]:			Taus to calculate the deviation at. This can either be an AllanTauDescriptor type
+					(AllTaus, Decadade, HalfDecade, Octave (default), HalfOctave, QuarterOctave), an array
+					of taus to calculate at or a number to build a custom log-scale on.
+
+#returns: named tupple (taus, deviation, error, count)
+* `taus`:		Taus which where used.
+* `deviation`:	Deviations calculated.
+* `error`:		Respective errors.
+* `count`:		Number of contributing terms for each deviation.
+"""
 function timedev(
 		data::Array{T, 1},
 		rate::AbstractFloat;
