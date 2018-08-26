@@ -63,9 +63,9 @@ res64r = allandev(arr64, 0.5)
 
 
 #tau errors
-@test_throws ErrorException allandev([1.0], 1.0, taus = 1.0)
-@test_throws ErrorException allandev([1.0], 1.0, taus = 0.5)
-@test_throws ErrorException allandev([1.0], 1.0, taus = -2.0)
+@test_throws ErrorException allandev(arr64, 1.0, taus = 1.0)
+@test_throws ErrorException allandev(arr64, 1.0, taus = 0.5)
+@test_throws ErrorException allandev(arr64, 1.0, taus = -2.0)
 
 
 
