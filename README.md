@@ -38,12 +38,12 @@ The following code calculates the overlapping Allan deviation of a given data ar
 ```Julia
 using AllanDeviations
 
-(taus, deviation, error, count) = allandev(arr, r)			#assuming phase data
+(tau, deviation, error, count) = allandev(arr, r)			#assuming phase data
 
-(taus, deviation, error, count) = allandev(arr, r, frequency = true)	#assuming frequency data
-(taus, deviation, error, count) = allandev(arr, r, overlapping = false)	#non-overlapping/consecutive
+(tau, deviation, error, count) = allandev(arr, r, frequency = true)	#assuming frequency data
+(tau, deviation, error, count) = allandev(arr, r, overlapping = false)	#non-overlapping/consecutive
 ```
-Every function returns a simple named tuple `(taus, deviation, error, count)`. Taus is an array of the averaging times used. `deviation` are the respective calculated deviations, `error` the respective errors of the deviations and `count` is the number of terms contributing to every deviation.<br>The errors are calculated by `error .= deviation ./ sqrt.(count)`.
+Every function returns a simple named tuple `(tau, deviation, error, count)`. `tau` is an array of the averaging times used. `deviation` are the respective calculated deviations, `error` the respective errors of the deviations and `count` is the number of terms contributing to every deviation.<br>The errors are calculated by `error .= deviation ./ sqrt.(count)`.
 
 The averaging times τ can also be finely tuned:
 ```Julia
@@ -77,7 +77,7 @@ rate = length(data[:, 1]) / data[end, 1]	#calculate rate
 
 result = allandev(freq, rate, frequency = true)	#calculate overlapping allan deviation
 
-plot(result.taus, result.deviation, xscale = :log10, yscale = :log10) #log-log plot everything
+plot(result.tau, result.deviation, xscale = :log10, yscale = :log10) #log-log plot everything
 savefig("allanDevPlot.png") #save the plot
 ```
 > ![resulting plot](./doc/src/img/allanDevPlot.png "resulting image")

@@ -16,8 +16,8 @@ res64 = allandev(arr64, 1.0, taus = AllTaus)
 @test isa(resInt.deviation, Array{Int})
 @test isa(res32.deviation, Array{Float32})
 @test isa(res64.deviation, Array{Float64})
-@test isa(res32.taus, Array{Float64})
-@test isa(res64.taus, Array{Float64})
+@test isa(res32.tau, Array{Float64})
+@test isa(res64.tau, Array{Float64})
 @test isa(res32.error, Array{Float32})
 @test isa(res64.error, Array{Float64})
 @test isa(res32.count, Array{Int})
@@ -35,10 +35,10 @@ res64 = allandev(arr64, 1.0, taus = AllTaus)
 
 
 #and the result should be the same lenth for both types
-@test length(res32.deviation) == length(res32.deviation)
-@test length(res32.error) == length(res32.error)
-@test length(res32.taus) == length(res32.taus)
-@test length(res32.count) == length(res32.count)
+@test length(res32.deviation) == length(res64.deviation)
+@test length(res32.error) == length(res64.error)
+@test length(res32.tau) == length(res64.tau)
+@test length(res32.count) == length(res64.count)
 
 
 
@@ -48,7 +48,7 @@ res64 = allandev(arr64, 1.0)
 res64r = allandev(arr64, 0.5)
 
 @test sum(abs.(res64.deviation .- (2.0 .* res64r.deviation))) <= 2e-16 #half the rate means half the allan deviation
-@test sum(abs.(res64.taus .- (0.5 .* res64r.taus))) <= 2e-16 #and double the tau
+@test sum(abs.(res64.tau .- (0.5 .* res64r.tau))) <= 2e-16 #and double the tau
 @test sum(abs.(res64.count .- res64r.count)) == 0 #but the count stays
 
 

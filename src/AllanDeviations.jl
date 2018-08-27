@@ -108,8 +108,8 @@ Calculates the allan deviation
 					(AllTaus, Decadade, HalfDecade, Octave (default), HalfOctave, QuarterOctave), an array
 					of taus to calculate at or a number to build a custom log-scale on.
 
-#returns: named tupple (taus, deviation, error, count)
-* `taus`:		Taus which where used.
+#returns: named tupple (tau, deviation, error, count)
+* `tau`:		Taus which where used.
 * `deviation`:	Deviations calculated.
 * `error`:		Respective errors.
 * `count`:		Number of contributing terms for each deviation.
@@ -165,7 +165,7 @@ function allandev(
 	end
 
 	selector = devcount .> 1 #select only entries, where 2 or more terms contributed to the deviation
-	(taus = m[selector] ./ rate, deviation = dev[selector], error = deverr[selector], count = devcount[selector])
+	(tau = m[selector] ./ rate, deviation = dev[selector], error = deverr[selector], count = devcount[selector])
 end
 
 
@@ -184,8 +184,8 @@ Calculates the modified allan deviation
 					(AllTaus, Decadade, HalfDecade, Octave (default), HalfOctave, QuarterOctave), an array
 					of taus to calculate at or a number to build a custom log-scale on.
 
-#returns: named tupple (taus, deviation, error, count)
-* `taus`:		Taus which where used.
+#returns: named tupple (tau, deviation, error, count)
+* `tau`:		Taus which where used.
 * `deviation`:	Deviations calculated.
 * `error`:		Respective errors.
 * `count`:		Number of contributing terms for each deviation.
@@ -249,7 +249,7 @@ function mallandev(
 	end
 
 	selector = devcount .> 1 #select only entries, where 2 or more terms contributed to the deviation
-	(taus = m[selector] ./ rate, deviation = dev[selector], error = deverr[selector], count = devcount[selector])
+	(tau = m[selector] ./ rate, deviation = dev[selector], error = deverr[selector], count = devcount[selector])
 end
 
 
@@ -268,8 +268,8 @@ Calculates the hadamard deviation
 					(AllTaus, Decadade, HalfDecade, Octave (default), HalfOctave, QuarterOctave), an array
 					of taus to calculate at or a number to build a custom log-scale on.
 
-#returns: named tupple (taus, deviation, error, count)
-* `taus`:		Taus which where used.
+#returns: named tupple (tau, deviation, error, count)
+* `tau`:		Taus which where used.
 * `deviation`:	Deviations calculated.
 * `error`:		Respective errors.
 * `count`:		Number of contributing terms for each deviation.
@@ -325,7 +325,7 @@ function hadamarddev(
 	end
 
 	selector = devcount .> 1 #select only entries, where 2 or more terms contributed to the deviation
-	(taus = m[selector] ./ rate, deviation = dev[selector], error = deverr[selector], count = devcount[selector])
+	(tau = m[selector] ./ rate, deviation = dev[selector], error = deverr[selector], count = devcount[selector])
 end
 
 
@@ -344,8 +344,8 @@ Calculates the time deviation
 					(AllTaus, Decadade, HalfDecade, Octave (default), HalfOctave, QuarterOctave), an array
 					of taus to calculate at or a number to build a custom log-scale on.
 
-#returns: named tupple (taus, deviation, error, count)
-* `taus`:		Taus which where used.
+#returns: named tupple (tau, deviation, error, count)
+* `tau`:		Taus which where used.
 * `deviation`:	Deviations calculated.
 * `error`:		Respective errors.
 * `count`:		Number of contributing terms for each deviation.
@@ -366,7 +366,7 @@ function timedev(
 	(mdtaus, mddeviation, mderror, mdcount) = mallandev(data, rate, frequency = frequency, overlapping = overlapping, taus = taus)
 	mdm = mdtaus ./ sqrt(3)
 
-	(taus = mdtaus, deviation = mdm .* mddeviation, error = mdm .* mderror, count = mdcount)
+	(tau = mdtaus, deviation = mdm .* mddeviation, error = mdm .* mderror, count = mdcount)
 end
 
 
