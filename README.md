@@ -5,6 +5,7 @@ and provides various frequency- and phase-stability tests in overlapping
 and consecutive forms.
 
 Currently implemented are:
+
 |Deviation|Function name|Phase Data|Frequency Data|Consecutive|Overlapping|
 |---------|:------------|:--------:|:------------:|:---------:|:---------:|
 |Allan deviation|`allandev`|✓|✓|✓|✓|
