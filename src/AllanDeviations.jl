@@ -39,7 +39,7 @@ function frequencytophase(data::Array{T, 1}, rate::AbstractFloat) where T
 	n = length(data) + 1
 	dataPrime = zeros(T, n)
 	walkingSum = zero(T)
-	for i in 2:n #spare the first element so that the phase begins with zero
+	@inbounds for i in 2:n #spare the first element so that the phase begins with zero
 		walkingSum += data[i - 1]
 		dataPrime[i] = walkingSum * dt
 	end
@@ -139,7 +139,7 @@ function allandev(
 	devcount = zeros(Int, length(m)) #sum term count
 
 	mStride = 1 #overlapping - can be overwritten in loop for consecutive
-	for (index, τ) in enumerate(m)
+	@inbounds for (index, τ) in enumerate(m)
 
 		if !overlapping #overwrite stride for consecutive operation
 			mStride = τ
@@ -215,7 +215,7 @@ function mallandev(
 	devcount = zeros(Int, length(m)) #sum term count
 
 	mStride = 1 #overlapping - can be overwritten in loop for consecutive
-	for (index, τ) in enumerate(m)
+	@inbounds for (index, τ) in enumerate(m)
 
 		if !overlapping #overwrite stride for consecutive operation
 			mStride = τ
@@ -299,7 +299,7 @@ function hadamarddev(
 	devcount = zeros(Int, length(m)) #sum term count
 
 	mStride = 1 #overlapping - can be overwritten in loop for consecutive
-	for (index, τ) in enumerate(m)
+	@inbounds for (index, τ) in enumerate(m)
 
 		if !overlapping #overwrite stride for consecutive operation
 			mStride = τ
