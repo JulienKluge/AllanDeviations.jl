@@ -12,6 +12,7 @@ Currently implemented are:
 |Modified Allan deviation|`mallandev`|✓|✓|✓|✓|
 |Hadamard deviation|`hadamarddev`|✓|✓|✓|✓|
 |Time deviation|`timedev`|✓|✓|✓|✓|
+|Total deviation|`totaldev`|✓|✓|✓|✓|
 
 ![example calculation](./doc/src/img/DeviationResults.png "Example calculation of two potassium D2-frequency references.")
 
