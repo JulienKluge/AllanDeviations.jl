@@ -13,6 +13,7 @@ Currently implemented are:
 |Hadamard deviation|`hadamarddev`|✓|✓|✓|✓|
 |Time deviation|`timedev`|✓|✓|✓|✓|
 |Total deviation|`totaldev`|✓|✓|✓|✓|
+|Maximal time interval error|`mtie`|✓|✓|✓|✓|
 
 ![example calculation](./doc/src/assets/DeviationResults.png "Example calculation of two potassium D2-frequency references.")
 

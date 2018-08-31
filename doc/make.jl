@@ -14,7 +14,8 @@ makedocs(
 			"Modified Allan Deviation" => "lib/mallandev.md",
 			"Hadamard Deviation" => "lib/hadamarddev.md",
 			"Time Deviation" => "lib/timedev.md",
-			"Total Deviation.md" => "lib/totaldev.md"
+			"Total Deviation" => "lib/totaldev.md",
+			"Max. time interval error" => "lib/mtie.md"
 		]
     ],
     assets = [
