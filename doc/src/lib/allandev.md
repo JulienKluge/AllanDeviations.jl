@@ -1,0 +1,5 @@
+# Allandeviation 
+
+```@docs
+allandev(x)
+```

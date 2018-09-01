@@ -1,4 +1,4 @@
-# AllanDeviations.jl (under development)
+![logo](./doc/src/assets/AllanDeviationsLogo.png "AllanDeviations.jl logo")
 
 AllanDeviations.jl is a package for the Julia programming language
 and provides various frequency- and phase-stability tests in overlapping
@@ -13,8 +13,9 @@ Currently implemented are:
 |Hadamard deviation|`hadamarddev`|✓|✓|✓|✓|
 |Time deviation|`timedev`|✓|✓|✓|✓|
 |Total deviation|`totaldev`|✓|✓|✓|✓|
+|Maximal time interval error|`mtie`|✓|✓|✓|✓|
 
-![example calculation](./doc/src/img/DeviationResults.png "Example calculation of two potassium D2-frequency references.")
+![example calculation](./doc/src/assets/DeviationResults.png "Example calculation of two potassium D2-frequency references.")
 
 ---
 |Build & Tests<br>(Julia v1.0.0 & upwards)| |Code test coverage|
@@ -81,7 +82,7 @@ result = allandev(freq, rate, frequency = true)	#calculate overlapping allan dev
 plot(result.tau, result.deviation, xscale = :log10, yscale = :log10) #log-log plot everything
 savefig("allanDevPlot.png") #save the plot
 ```
-> ![resulting plot](./doc/src/img/allanDevPlot.png "resulting image")
+> ![resulting plot](./doc/src/assets/allanDevPlot.png "resulting image")
 
 ---
 ## References
