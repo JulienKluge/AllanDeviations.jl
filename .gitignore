@@ -5,3 +5,5 @@ deps/deps.jl
 
 doc/build/
 doc/site/
+
+*.bat
