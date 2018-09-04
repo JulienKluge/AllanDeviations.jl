@@ -1,4 +1,4 @@
-![logo](./doc/src/assets/AllanDeviationsLogo.png "AllanDeviations.jl logo")
+![logo](./doc/src/assets/Logo.png "AllanDeviations.jl logo")
 
 AllanDeviations.jl is a package for the Julia programming language
 and provides various frequency- and phase-stability tests in overlapping
