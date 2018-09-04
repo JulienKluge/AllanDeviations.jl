@@ -18,10 +18,10 @@ Currently implemented are:
 ![example calculation](./doc/src/assets/DeviationResults.png "Example calculation of two potassium D2-frequency references.")
 
 ---
-|Build & Tests<br>(Julia v1.0.0 & upwards)| |Code test coverage|
-|-------------|-|------------------|
-|[![AppVeyor](https://ci.appveyor.com/api/projects/status/x28fou4fc8mnf2o7/branch/master?svg=true)](https://ci.appveyor.com/project/JulienKluge/allandeviations-jl/branch/master)| |[![Coveralls](https://coveralls.io/repos/github/JulienKluge/AllanDeviations.jl/badge.svg?branch=master)](https://coveralls.io/github/JulienKluge/AllanDeviations.jl?branch=master)|
-[![TravisCI](https://travis-ci.org/JulienKluge/AllanDeviations.jl.svg?branch=master)](https://travis-ci.org/JulienKluge/AllanDeviations.jl)| |[![codecov](https://codecov.io/gh/JulienKluge/AllanDeviations.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/JulienKluge/AllanDeviations.jl)|
+|Build & Tests<br>(Julia v1.0.0 & upwards)| |Code test coverage| | Documentation |
+|-------------|-|------------------|-|------------------|
+|[![AppVeyor](https://ci.appveyor.com/api/projects/status/x28fou4fc8mnf2o7/branch/master?svg=true)](https://ci.appveyor.com/project/JulienKluge/allandeviations-jl/branch/master)| |[![Coveralls](https://coveralls.io/repos/github/JulienKluge/AllanDeviations.jl/badge.svg?branch=master)](https://coveralls.io/github/JulienKluge/AllanDeviations.jl?branch=master)| | [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://JulienKluge.github.io/AllanDeviations.jl/latest/) |
+[![TravisCI](https://travis-ci.org/JulienKluge/AllanDeviations.jl.svg?branch=master)](https://travis-ci.org/JulienKluge/AllanDeviations.jl)| |[![codecov](https://codecov.io/gh/JulienKluge/AllanDeviations.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/JulienKluge/AllanDeviations.jl)| | |
 
 ---
 ## Usage
