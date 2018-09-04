@@ -2,7 +2,7 @@ using Documenter, AllanDeviations
 
 makedocs(
 	format = :html,
-    sitename = "AllanDeviations",
+    sitename = "AllanDeviations.jl",
     authors = "Julien Kluge",
     pages = [
         "Home" => "index.md",
@@ -19,6 +19,12 @@ makedocs(
 		]
     ],
     assets = [
-        "assets/AllanDeviationsLogo.png"
+        "assets/Logo.png"
     ]
+)
+
+deploydocs(
+    deps   = Deps.pip("mkdocs", "python-markdown-math"),
+    repo   = "github.com/JulienKluge/AllanDeviations.jl.git",
+    julia  = "nightly"
 )
