@@ -13,5 +13,5 @@ notifications:
   email: false
 after_success:
 - julia -e 'using Pkg; cd(Pkg.dir("AllanDeviations")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder()); Coveralls.submit(process_folder())'
-  - julia -e 'Pkg.add("Documenter")'
+  - julia -e 'using Pkg; Pkg.add("Documenter")'
   - julia -e 'using Pkg; using Documenter; cd(Pkg.dir("AllanDeviations")); include(joinpath("docs", "make.jl"))'
