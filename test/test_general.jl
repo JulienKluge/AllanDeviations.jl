@@ -59,6 +59,8 @@ res64r = allandev(arr64, 0.5)
 @test_throws ErrorException mallandev([1.0], 1.0)
 @test_throws ErrorException hadamarddev([1.0], 1.0)
 @test_throws ErrorException timedev([1.0], 1.0)
+@test_throws ErrorException totaldev([1.0], 1.0)
+@test_throws ErrorException mtie([1.0], 1.0)
 
 
 
@@ -74,6 +76,10 @@ resallan = allandev(arr64, 1.0, taus = AllTaus)
 resmallan = mallandev(arr64, 1.0, taus = AllTaus)
 reshadamard = hadamarddev(arr64, 1.0, taus = AllTaus)
 restime = timedev(arr64, 1.0, taus = AllTaus)
+restotal = totaldev(arr64, 1.0, taus = AllTaus)
+resmtie1 = mtie(arr64, 1.0, taus = AllTaus)
+resmtie2 = mtie([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0], 1.0, taus = AllTaus)
+resmtie3 = mtie([8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0], 1.0, taus = AllTaus)
 
 @test abs(resallan.deviation[1] - 0.97093168314425360) < 2e-16
 @test abs(resallan.deviation[2] - 0.18221724671391565) < 2e-16
@@ -87,6 +93,20 @@ restime = timedev(arr64, 1.0, taus = AllTaus)
 
 @test abs(restime.deviation[1] - 0.56056766862807130) < 2e-16
 @test abs(restime.deviation[2] - 0.10622957319984969) < 2e-16
+
+@test abs(restotal.deviation[1] - 0.97093168314425360) < 2e-16
+@test abs(restotal.deviation[2] - 0.35539004394233290) < 2e-16
+@test abs(restotal.deviation[3] - 0.19982631347136330) < 2e-16
+@test abs(restotal.deviation[4] - 0.27540216805004764) < 2e-16
+@test abs(restotal.deviation[5] - 0.13919410907075053) < 2e-16
+@test abs(restotal.deviation[6] - 0.14877975892797604) < 2e-16
+
+@test length(resmtie1.deviation) == length(arr64) - 2
+for i = 1:length(resmtie1.deviation)
+	@test abs(resmtie1.deviation[i] - 1.0) < 2e-16
+	@test abs(resmtie2.deviation[i] - i) < 2e-16
+	@test abs(resmtie3.deviation[i] - i) < 2e-16
+end
 
 @test resallan.deviation[1] == resmallan.deviation[1] #first element of allan deviation and modified allan deviation is the same
 @test abs(resallan.deviation[1] / sqrt(3) - restime.deviation[1]) < 2e-16 #first element of allan deviation and modified allan deviation is the same
@@ -106,6 +126,8 @@ resmallan_o = mallandev(arr64, 1.0, overlapping = true, taus = AllTaus).count
 resmallan_c = mallandev(arr64, 1.0, overlapping = false, taus = AllTaus).count
 reshadamard_o = hadamarddev(arr64, 1.0, overlapping = true, taus = AllTaus).count
 reshadamard_c = hadamarddev(arr64, 1.0, overlapping = false, taus = AllTaus).count
+restotal_o = totaldev(arr64, 1.0, overlapping = true, taus = AllTaus).count
+resmtie_o = mtie(arr64, 1.0, overlapping = true, taus = AllTaus).count
 
 @test length(resallan) == length(resallan_o) #overlapping is standard
 @test length(resallan_o) == 255
@@ -122,6 +144,12 @@ reshadamard_c = hadamarddev(arr64, 1.0, overlapping = false, taus = AllTaus).cou
 @test length(reshadamard_c) == 127
 @test sum(reshadamard_o) == 43435
 @test sum(reshadamard_c) == 2461
+
+@test length(restotal_o) == 510
+@test sum(restotal_o) == 260100
+
+@test length(resmtie_o) == 510
+@test sum(resmtie_o) == 130815
 
 
 
