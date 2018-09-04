@@ -24,7 +24,10 @@ makedocs(
 )
 
 deploydocs(
-    deps   = Deps.pip("mkdocs", "python-markdown-math"),
     repo   = "github.com/JulienKluge/AllanDeviations.jl.git",
-    julia  = "nightly"
+    target = "build",
+    osname = "linux",
+    julia  = "nightly",
+    deps = nothing,
+    make = nothing
 )
