@@ -17,9 +17,6 @@ makedocs(
 			"Total Deviation" => "lib/totaldev.md",
 			"Max. time interval error" => "lib/mtie.md"
 		]
-    ],
-    assets = [
-        "assets/Logo.png"
     ]
 )
 
