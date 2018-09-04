@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Quick Start Guide · AllanDeviations.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link href="assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><h1>AllanDeviations.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="search.html"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="index.html">Home</a></li><li><a class="toctext" href="installation.html">Installation Guide</a></li><li class="current"><a class="toctext" href="quickstart.html">Quick Start Guide</a><ul class="internal"><li><a class="toctext" href="#Installation-1">Installation</a></li><li><a class="toctext" href="#Loading-1">Loading</a></li><li><a class="toctext" href="#Allan-Deviation-of-random-data-1">Allan Deviation of random data</a></li><li><a class="toctext" href="#Other-deviations-1">Other deviations</a></li><li><a class="toctext" href="#Full-Data-result-1">Full Data result</a></li><li><a class="toctext" href="#Calculating-on-frequency-data-1">Calculating on frequency data</a></li><li><a class="toctext" href="#Non-Overlapping-1">Non-Overlapping</a></li><li><a class="toctext" href="#Addressing-different-taus-1">Addressing different taus</a></li><li><a class="toctext" href="#Benchmark-Deviations-1">Benchmark Deviations</a></li></ul></li><li><span class="toctext">Library</span><ul><li><a class="toctext" href="lib/apiguide.html">API guide</a></li><li><a class="toctext" href="lib/allandev.html">Allan Deviation</a></li><li><a class="toctext" href="lib/mallandev.html">Modified Allan Deviation</a></li><li><a class="toctext" href="lib/hadamarddev.html">Hadamard Deviation</a></li><li><a class="toctext" href="lib/timedev.html">Time Deviation</a></li><li><a class="toctext" href="lib/totaldev.html">Total Deviation</a></li><li><a class="toctext" href="lib/mtie.html">Max. time interval error</a></li></ul></li></ul></nav><article id="docs"><header><nav><ul><li><a href="quickstart.html">Quick Start Guide</a></li></ul><a class="edit-page" href="https://github.com/JulienKluge/AllanDeviations.jl/blob/master/doc/src/quickstart.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Quick Start Guide</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Quickstart-1" href="#Quickstart-1">Quickstart</a></h1><h2><a class="nav-anchor" id="Installation-1" href="#Installation-1">Installation</a></h2><p>Install the package once in a Julia Console/REPL with:</p><pre><code class="language-Julia">using Pkg
+Pkg.add(&quot;AllanDeviations&quot;)</code></pre><h2><a class="nav-anchor" id="Loading-1" href="#Loading-1">Loading</a></h2><p>The package can be loaded in every Julia program with a simple using directive</p><pre><code class="language-Julia">using AllanDeviations</code></pre><h2><a class="nav-anchor" id="Allan-Deviation-of-random-data-1" href="#Allan-Deviation-of-random-data-1">Allan Deviation of random data</a></h2><p>Print the overlapping Allan Deviation of one million random points with rate 1.0 at octave log-spaced taus:</p><pre><code class="language-Julia">using AllanDeviations
+
+arr = rand(Float64, 1_000_000)
+
+result = allandev(arr, 1.0)
+
+println(result.deviation)</code></pre><h2><a class="nav-anchor" id="Other-deviations-1" href="#Other-deviations-1">Other deviations</a></h2><pre><code class="language-Julia">result = allandev(arr, 1.0)    #Allan deviation
+result = mallandev(arr, 1.0)   #Modified Allan deviation
+result = hadamarddev(arr, 1.0) #Hadamard deviation
+result = timedev(arr, 1.0)     #Time deviation
+result = totaldev(arr, 1.0)    #Total deviation
+result = mtie(arr, 1.0)        #Maximum time interval error</code></pre><h2><a class="nav-anchor" id="Full-Data-result-1" href="#Full-Data-result-1">Full Data result</a></h2><p>Every deviation method returns a named tuple in the form <code>(tau, deviation, error, count)</code></p><pre><code class="language-Julia">println(&quot;Calculated taus:&quot;)
+println(result.tau)
+
+println(&quot;Calculated Deviations:&quot;)
+println(result.deviation)
+
+println(&quot;Calculated errors:&quot;)
+println(result.error)
+
+println(&quot;Calculated Term Number:&quot;)
+println(result.count)</code></pre><h3><a class="nav-anchor" id="Same-Result-via-tuple-deconstruction-1" href="#Same-Result-via-tuple-deconstruction-1">Same Result via tuple deconstruction</a></h3><p>The returned tuple can already be deconstructed into variables on return.</p><pre><code class="language-Julia">(myTaus, myDeviation, myError, myCount) = allandev(arr, 1.0)</code></pre><h2><a class="nav-anchor" id="Calculating-on-frequency-data-1" href="#Calculating-on-frequency-data-1">Calculating on frequency data</a></h2><p>AllanDeviations.jl assumes by default that the <code>data</code>-argument contains phase data. This can be changed by setting the optional named argument <code>frequency</code> to <code>true</code> for frequency data.</p><pre><code class="language-Julia">result = allandev(arr, 1.0, frequency = true)</code></pre><h2><a class="nav-anchor" id="Non-Overlapping-1" href="#Non-Overlapping-1">Non-Overlapping</a></h2><p>AllanDeviations.jl will by default calculate the overlapping deviations. This can be changed by setting the optional named argument <code>overlapping</code> to <code>false</code>.</p><pre><code class="language-Julia">result = allandev(arr, 1.0, overlapping = false)</code></pre><h2><a class="nav-anchor" id="Addressing-different-taus-1" href="#Addressing-different-taus-1">Addressing different taus</a></h2><pre><code class="language-Julia">#Key-Types
+allandev(arr, 1.0, taus = AllTaus)       #all possible taus
+allandev(arr, 1.0, taus = QuarterOctave) #quarter octave log-spaced
+allandev(arr, 1.0, taus = HalfOctave)    #half octave log-spaced
+allandev(arr, 1.0, taus = Octave)        #octave log-spaced
+allandev(arr, 1.0, taus = HalfDecade)    #hald decade log-spaced
+allandev(arr, 1.0, taus = Decade)        #decade log-spaced
+
+#Explicit taus
+allandev(arr, 1.0, taus = [2.0])           #calculate deviation at tau=2.0 if possible
+allandev(arr, 1.0, taus = [2.0, 3.0, 4.0]) #calculate deviation at tau=2.0, tau=3.0 &amp; tau=4.0 if possible
+
+#Custom log scale
+allandev(arr, 1.0, taus = 1.2) #calculate 1/5 of an octave log-spaced
+
+#Custom log count
+allandev(arr, 1.0, taus = 100) #calculate 100 log-spaced tau values between min and maximal possible tau
+#This does not guarantee that 100 deviations will be calculated since some values will be discarded
+#when less than two terms contributed to it</code></pre><h2><a class="nav-anchor" id="Benchmark-Deviations-1" href="#Benchmark-Deviations-1">Benchmark Deviations</a></h2><h4><a class="nav-anchor" id="Benchmark-different-overlapping-deviations-for-one-million-datapoints-and-200-taus-1" href="#Benchmark-different-overlapping-deviations-for-one-million-datapoints-and-200-taus-1">Benchmark different overlapping deviations for one million datapoints and 200 taus</a></h4><pre><code class="language-Julia">using BenchmarkTools
+arr = rand(Float64, 1_000_000);
+@btime allandev(arr, 1.0, taus = 200);    #Allan Deviation
+@btime mallandev(arr, 1.0, taus = 200);   #Modified Allan Deviation
+@btime hadamarddev(arr, 1.0, taus = 200); #Hadamard Deviation
+@btime timedev(arr, 1.0, taus = 200);     #Time Deviation
+@btime totaldev(arr, 1.0, taus = 200);    #Total Deviation
+@btime mtie(arr, 1.0, taus = 200);        #Maximum time interval error
+println(&quot;Done&quot;)</code></pre><p>Results</p><pre><code class="language-none">315.247 ms (52 allocations: 35.91 KiB) #Allan Deviation
+309.990 ms (52 allocations: 35.28 KiB) #Modified Allan Deviation
+278.230 ms (52 allocations: 35.28 KiB) #Hadamard Deviation
+309.647 ms (57 allocations: 39.33 KiB) #Time Deviation
+331.483 ms (54 allocations: 22.92 MiB) #Total Deviation
+901.942 ms (52 allocations: 35.91 KiB) #Maximum time interval error
+Done</code></pre><p>For comparison, pythons allantools needs approximately 3.5 seconds for the Allan deviation, 6.5 seconds for the total deviation and an indeterminate amount of time for mtie (to be fair, allantools also provides a fastmtie which seems to be currently unfinished though).</p><h4><a class="nav-anchor" id="Benchmark-different-overlapping-deviations-for-10.000-data-points-and-all-possible-taus:-1" href="#Benchmark-different-overlapping-deviations-for-10.000-data-points-and-all-possible-taus:-1">Benchmark different overlapping deviations for 10.000 data points and all possible taus:</a></h4><pre><code class="language-Julia">using BenchmarkTools
+arr = rand(Float64, 10_000)
+@btime allandev(arr, 1.0, taus = AllTaus);    #Allan Deviation
+@btime mallandev(arr, 1.0, taus = AllTaus);   #Modified Allan Deviation
+@btime hadamarddev(arr, 1.0, taus = AllTaus); #Hadamard Deviation
+@btime timedev(arr, 1.0, taus = AllTaus);     #Time Deviation
+@btime totaldev(arr, 1.0, taus = AllTaus);    #Total Deviation
+@btime mtie(arr, 1.0, taus = AllTaus);        #Maximum time interval error
+println(&quot;Done&quot;)</code></pre><p>Results:</p><pre><code class="language-none">37.702 ms (30 allocations: 436.13 KiB)  #Allan Deviation
+39.805 ms (30 allocations: 371.13 KiB)  #Modified Allan Deviation
+28.266 ms (30 allocations: 371.13 KiB)  #Hadamard Deviation
+39.969 ms (51 allocations: 449.97 KiB)  #Time Deviation
+150.508 ms (32 allocations: 865.89 KiB) #Total Deviation
+240.852 ms (30 allocations: 631.44 KiB) #Maximum time interval error
+Done
+</code></pre><p>However, these timings need to be taken with a grain of salt, since it does not represent real world data.</p><footer><hr/><a class="previous" href="installation.html"><span class="direction">Previous</span><span class="title">Installation Guide</span></a><a class="next" href="lib/apiguide.html"><span class="direction">Next</span><span class="title">API guide</span></a></footer></article></body></html>
