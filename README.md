@@ -1,7 +1,7 @@
 ![logo](./doc/src/assets/AllanDeviationsLogo.png "AllanDeviations.jl logo")
 
 AllanDeviations.jl is a package for the Julia programming language
-and provides various frequency- and phase-stability tests in overlapping
+and provides various frequency- and phase-stability deviations (or variances) in overlapping
 and consecutive forms.
 
 Currently implemented are:
@@ -20,8 +20,8 @@ Currently implemented are:
 ---
 |Build & Tests<br>(Julia v1.0.0 & upwards)| |Code test coverage| | Documentation |
 |-------------|-|------------------|-|------------------|
-|[![AppVeyor](https://ci.appveyor.com/api/projects/status/x28fou4fc8mnf2o7/branch/master?svg=true)](https://ci.appveyor.com/project/JulienKluge/allandeviations-jl/branch/master)| |[![Coveralls](https://coveralls.io/repos/github/JulienKluge/AllanDeviations.jl/badge.svg?branch=master)](https://coveralls.io/github/JulienKluge/AllanDeviations.jl?branch=master)| | [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://JulienKluge.github.io/AllanDeviations.jl/latest/) |
-[![TravisCI](https://travis-ci.org/JulienKluge/AllanDeviations.jl.svg?branch=master)](https://travis-ci.org/JulienKluge/AllanDeviations.jl)| |[![codecov](https://codecov.io/gh/JulienKluge/AllanDeviations.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/JulienKluge/AllanDeviations.jl)| | |
+|[![AppVeyor](https://ci.appveyor.com/api/projects/status/x28fou4fc8mnf2o7/branch/master?svg=true)](https://ci.appveyor.com/project/JulienKluge/allandeviations-jl/branch/master)| |[![Coveralls](https://coveralls.io/repos/github/JulienKluge/AllanDeviations.jl/badge.svg?branch=master)](https://coveralls.io/github/JulienKluge/AllanDeviations.jl?branch=master)| | [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://JulienKluge.github.io/AllanDeviations.jl/stable/) |
+[![TravisCI](https://travis-ci.org/JulienKluge/AllanDeviations.jl.svg?branch=master)](https://travis-ci.org/JulienKluge/AllanDeviations.jl)| |[![codecov](https://codecov.io/gh/JulienKluge/AllanDeviations.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/JulienKluge/AllanDeviations.jl)| | [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://JulienKluge.github.io/AllanDeviations.jl/latest/) |
 
 ---
 ## Usage
