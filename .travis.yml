@@ -13,4 +13,4 @@ notifications:
   email: false
 after_success:
   - julia -e 'using Pkg; using AllanDeviations; cd(joinpath(dirname(pathof(AllanDeviations)), "..")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder()); Coveralls.submit(process_folder())'
-  - julia -e 'using Pkg; using AllanDeviations; Pkg.add("Documenter"); using Documenter; cd(joinpath(dirname(pathof(AllanDeviations)), "..")); include(joinpath("doc", "make.jl"))'
+  - julia -e 'using Pkg; using AllanDeviations; ps=Pkg.PackageSpec(name="Documenter", version="0.19"); Pkg.add(ps); Pkg.pin(ps); using Documenter; cd(joinpath(dirname(pathof(AllanDeviations)), "..")); include(joinpath("doc", "make.jl"))'
