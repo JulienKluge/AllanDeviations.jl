@@ -16,7 +16,7 @@ Calculates the modified allan deviation
 * `count`:		Number of contributing terms for each deviation.
 """
 function mallandev(
-		data::Array{T, 1},
+		data::AbstractArray{T, 1},
 		rate::AbstractFloat;
 		frequency::Bool = false,
 		overlapping::Bool = true,

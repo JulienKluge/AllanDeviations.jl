@@ -22,7 +22,7 @@ Calculates the maximal time interval error
 * `count`:		Number of contributing terms for each deviation.
 """
 function mtie(
-		data::Array{T, 1},
+		data::AbstractArray{T, 1},
 		rate::AbstractFloat;
 		frequency::Bool = false,
 		overlapping::Bool = true,
