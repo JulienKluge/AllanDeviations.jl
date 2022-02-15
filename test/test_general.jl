@@ -1,8 +1,9 @@
 using Test
 using Random
 
-include("../src/AllanDeviations.jl")
-using .AllanDeviations
+#include("../src/AllanDeviations.jl")
+#using .AllanDeviations
+using AllanDeviations
 
 arrInt = zeros(Int, 5)
 arr32 = zeros(Float32, 5)
