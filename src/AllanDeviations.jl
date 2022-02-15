@@ -36,7 +36,7 @@ struct Decade <: AllanTauDescriptor end
 #
 # Helper Functions/
 #
-function frequencytophase(data::Array{T, 1}, rate::AbstractFloat) where T
+function frequencytophase(data::AbstractArray{T, 1}, rate::AbstractFloat) where T
 	dt = 1 / rate
 	n = length(data) + 1
 	dataPrime = zeros(T, n)
