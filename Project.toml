@@ -1,7 +1,7 @@
 name = "AllanDeviations"
 uuid = "3997ae70-a3ff-11e8-15d8-f1cc36d21cef"
 authors = ["Julien Kluge <Julien.Kluge@gmail.com>"]
-version = "0.2.1"
+version = "0.1.1"
 
 [extras]
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
