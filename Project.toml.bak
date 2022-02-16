@@ -3,9 +3,6 @@ uuid = "7e732cdd-9a46-54ef-932c-559ab8d83ddb"
 authors = ["Julien Kluge <Julien.Kluge@gmail.com>"]
 version = "0.3.0"
 
-[compat]
-julia = "^1.0.0"
-
 [extras]
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
